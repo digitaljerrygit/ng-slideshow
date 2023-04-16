@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Image Gallery</h2>
+    <h3>Student Name: {{assignmentData.name}} / ID: {{assignmentData.studentID}}</h3>
+    <h4>Image {{count + 1}} / 10</h4>
+    <div class="row">
+            <button type="button" class="btn btn-light col-md-1" (click)="decreaseCount()" [disabled]="count === 0">
+                < Go Back</button>
+            <div class="col-md-10">
+                <div class="thumbnail">
+                    <img [src]="assignmentData.images[count].link" [alt]="assignmentData.images[count].caption"
+                        style="width:100%">
+                    <div class="caption">
+                        <p>{{assignmentData.images[count].caption}}</p>
+                    </div>
+
+                </div>
+            </div>
+            <button type="button" class="btn btn-light col-md-1" (click)="increaseCount()" [disabled]="count === 9">Go Forward ></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-1" *ngFor="let image of assignmentData.images; let i=index">
+                    <img [src]="image.link" [ngClass]="{'img-thumbnail': true, 'active': image.active}" [alt]="assignmentData.images[count].link" tabindex="0" (click)="setCount(i)">
+                </div>
+
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
